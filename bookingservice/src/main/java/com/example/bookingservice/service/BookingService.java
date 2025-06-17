@@ -23,14 +23,17 @@ public class BookingService {
 
 
     public BookingResponse createBooking(final BookingRequest request) {
-
+        // comprobamos si el cliente existe, si no, se lanza exception
         final Customer customer = customerRepository.findById(request.getUserId()).orElse(null);
         if (customer == null) {
             throw new RuntimeException("User not found");
         }
-
+        // comprobamos si hay hueco para reservar, si no, se lanza exception
         final InventoryResponse inventoryResponse = inventoryServiceClient.getInventory(request.getEventId());
         System.out.println("Inventory service response" + inventoryResponse);
+        if (inventoryResponse.getCapacity() < request.getTicketCount()) {
+            throw new RuntimeException("Not enough inventory");
+        }
 
 
         return BookingResponse.builder().build();

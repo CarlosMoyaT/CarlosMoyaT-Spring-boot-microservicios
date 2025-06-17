@@ -15,4 +15,5 @@ public class BookingResponse {
     private Long eventId;
     private Long ticketCount;
     private String ticketPrice;
+
 }
