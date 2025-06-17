@@ -7,6 +7,7 @@ import com.example.bookingservice.request.BookingRequest;
 import com.example.bookingservice.response.BookingResponse;
 import com.example.bookingservice.response.InventoryResponse;
 import com.example.bookingservice.respository.CustomerRepository;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 
 @Service
+@Slf4j
 public class BookingService {
 
     private final CustomerRepository customerRepository;
@@ -36,7 +38,7 @@ public class BookingService {
         }
         // comprobamos si hay hueco para reservar, si no, se lanza exception
         final InventoryResponse inventoryResponse = inventoryServiceClient.getInventory(request.getEventId());
-        System.out.println("Inventory service response" + inventoryResponse);
+        log.info("Inventory response: {}", inventoryResponse);
         if (inventoryResponse.getCapacity() < request.getTicketCount()) {
             throw new RuntimeException("Not enough inventory");
         }
@@ -44,10 +46,14 @@ public class BookingService {
         final BookingEvent bookingEvent = createBookingEvent(request, customer, inventoryResponse);
 
         kafkaTemplate.send("booking", bookingEvent);
+        log.info("booking sent {}", bookingEvent);
 
-
-        return BookingResponse.builder().build();
-
+        return BookingResponse.builder()
+                .userId(bookingEvent.getUserId())
+                .eventId(bookingEvent.getEventId())
+                .ticketCount(bookingEvent.getTicketCount())
+                .totalPrice(bookingEvent.getTotalPrice())
+                .build();
     }
 
     private BookingEvent createBookingEvent(final BookingRequest request, final Customer customer, final InventoryResponse inventoryResponse) {
