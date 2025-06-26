@@ -2,14 +2,24 @@ package com.orderservice.service;
 
 
 import com.bookingservice.event.BookingEvent;
+import com.orderservice.repository.OrderRepository;
 import jakarta.persistence.criteria.Order;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
 public class OrderService {
+
+    private OrderRepository orderRepository;
+
+    @Autowired
+    public OrderService(OrderRepository orderRepository) {
+        this.orderRepository = orderRepository;
+    }
+
 
     @KafkaListener(topics = "booking", groupId = "order-service")
     public void orderEvent(BookingEvent bookingEvent) {
@@ -20,6 +30,7 @@ public class OrderService {
         orderRepository.saveAndFlush(order);
 
          // Update Inventory
+
     }
 
     private Order createOrder(BookingEvent bookingEvent) {
