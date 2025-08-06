@@ -6,6 +6,7 @@ import com.example.demo.repository.VenueRepository;
 import com.example.demo.repository.EventRepository;
 import com.example.demo.response.EventInventoryResponse;
 import com.example.demo.response.VenueInventoryResponse;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +16,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
+@Slf4j
 public class InventoryService {
 
     private final EventRepository eventRepository;
@@ -58,6 +60,13 @@ public class InventoryService {
                 .ticketPrice(event.getTicketPrice())
                 .eventId(event.getId())
                 .build();
+    }
+
+    public void updateEventCapacity(final Long eventId, final Long ticketsBooked) {
+        final Event event = eventRepository.findById(eventId).orElse(null);
+        event.setLeftCapacity(event.getLeftCapacity() - ticketsBooked);
+        eventRepository.saveAndFlush(event);
+        log.info("Updated event capacity for event id: {} with tickets booked: {}", eventId, ticketsBooked);
     }
 
 
