@@ -27,17 +27,15 @@ public class InventoryServiceRoutes {
                 .build();
 
 
-        }
+    }
 
-        //Helper function
-        private static ServerResponse forwardWithPathVariable(ServerRequest request, String pathVariable, String baseUrl) throws Exception {
+    private static ServerResponse forwardWithPathVariable(ServerRequest request, String pathVariable, String baseUrl) throws Exception {
         String value = request.pathVariable(pathVariable);
         return HandlerFunctions.http(baseUrl + value).handle(request);
 
-
-
-        }
-
     }
-
 }
+
+
+
+
