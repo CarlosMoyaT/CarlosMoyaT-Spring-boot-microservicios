@@ -2,7 +2,7 @@ Microservices tickets purchasing
 
 ## Architecture design
 
-![Diseño de Arquitectura](inventoryservice/docs/architecture-design/Captura.JPG)
+![Diseño de Arquitectura](inventoryservice/docs/architecture-design/Diagram.png)
 
 
 -orderservice
