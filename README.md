@@ -4,6 +4,9 @@ Tickets purchasing for events based on microservices
 
 ![Diseño de Arquitectura](inventoryservice/docs/architecture-design/Diagram.png)
 
+TECHNOLOGIES
+Java 21, Spring Boot, PostgreSQL, Kafka, Keycloak, Prometheus, Grafana
+
 
 -orderservice
 -bookingservice
