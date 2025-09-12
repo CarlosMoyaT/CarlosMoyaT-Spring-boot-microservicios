@@ -1,4 +1,4 @@
-Microservices tickets purchasing
+Tickets purchasing for events based on microservices
 
 ## Architecture design
 
