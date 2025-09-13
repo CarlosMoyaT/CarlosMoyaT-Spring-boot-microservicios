@@ -7,10 +7,12 @@ Tickets purchasing for events based on microservices
 TECHNOLOGIES
 Java 21, Spring Boot, PostgreSQL, Kafka, Docker, Keycloak, Prometheus, Grafana
 
+-InventoryService
+(inventoryservice/docs/documentationswagger/InventoryService swagger.JPG)
 
 -orderservice
 -bookingservice
--inventoryservice 
+
 -apigateway
 
 
