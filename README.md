@@ -8,9 +8,14 @@ TECHNOLOGIES
 Java 21, Spring Boot, PostgreSQL, Kafka, Docker, Keycloak, Prometheus, Grafana
 
 
+# InventoryService
+![](inventoryservice/docs/documentationswagger/InventoryService%20swagger.JPG)
+
+
+
 -orderservice
 -bookingservice
--inventoryservice 
+
 -apigateway
 
 
