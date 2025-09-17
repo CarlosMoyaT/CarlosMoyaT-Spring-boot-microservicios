@@ -10,7 +10,7 @@ Java 21, Spring Boot, PostgreSQL, Kafka, Docker, Keycloak, Prometheus, Grafana
 
 # InventoryService
 ![](inventoryservice/docs/documentationimg/InventoryService%20swagger.JPG)
-![](inventoryservice/docs/documentationimg/Metric%prometheus.JPG)
+![](inventoryservice/docs/documentationimg/Metric%20prometheus.JPG)
 
 
 
