@@ -9,7 +9,7 @@ Java 21, Spring Boot 3, Maven, PostgreSQL, Kafka, Docker, Keycloak, Flyway, Lomb
 
 
 # InventoryService
-Maneja la información del evento y del lugar
+Handles the information of the event and the venue.
 ![](inventoryservice/docs/documentationimg/InventoryService%20swagger.JPG)
 ![](inventoryservice/docs/documentationimg/Metric%20prometheus.JPG)
 
@@ -19,7 +19,7 @@ Maneja la información del evento y del lugar
 
 
 # BookingService
-Recibe una solicitud para realizar un pedido de un evento para un cliente, bookingservice verificará que el cliente realmente exista, y si existe, se obtendrá de inventoryservice información sobre evento específico, capacidad restante, precio de ticket...
+A request is received to place an order for an event for a customer. The booking service will verify that the customer actually exists, and if so, it will retrieve from the inventory service information about the specific event, remaining capacity, ticket price...
 
 
 
