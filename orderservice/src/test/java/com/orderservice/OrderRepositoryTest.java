@@ -1,4 +1,4 @@
-package com.example.orderservice;
+package com.orderservice;
 
 
 import com.orderservice.repository.OrderRepository;
