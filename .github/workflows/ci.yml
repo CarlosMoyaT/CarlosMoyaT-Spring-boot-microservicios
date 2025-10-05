@@ -1,12 +1,16 @@
-name: CI/CD Pipeline
+name: CI/CD Pipeline - orderservice
 
 on:
   push:
     branches:
       - master
+    paths:
+      - 'orderservice/**'
   pull_request:
     branches:
       - master
+    paths:
+      - 'orderservice/**'
 
 jobs:
   build-and-test:
@@ -22,8 +26,10 @@ jobs:
           distribution: temurin
       - name: Build with Maven Wrapper
         run: ./mvnw clean install
+        working-directory: orderservice
       - name: Run Tests
         run: ./mvnw test
+        working-directory: orderservice
 
   deploy:
     runs-on: ubuntu-latest
@@ -31,3 +37,4 @@ jobs:
     steps:
       - name: Deploy placeholder
         run: echo "Deploy step (custom implementation here)"
+
