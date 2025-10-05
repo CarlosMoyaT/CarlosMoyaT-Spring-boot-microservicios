@@ -14,7 +14,7 @@
 	<groupId>com.example</groupId>
 	<artifactId>orderservice</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>orderservice</name>
+	<name>order service</name>
 	<description>Project microservices</description>
 	<properties>
 		<java.version>21</java.version>
