@@ -25,9 +25,9 @@ jobs:
           java-version: '21'
           distribution: temurin
       - name: Build orderservice
-        run: ./mvnw -f orderservice/pom.xml clean install
+        run: orderservice/mvnw -f orderservice/pom.xml clean install
       - name: Run Tests orderservice
-        run: ./mvnw -f orderservice/pom.xml test
+        run: orderservice/mvnw -f orderservice/pom.xml test
         
 
   deploy:
@@ -36,6 +36,7 @@ jobs:
     steps:
       - name: Deploy placeholder
         run: echo "Deploy step (custom implementation here)"
+
 
 
 
