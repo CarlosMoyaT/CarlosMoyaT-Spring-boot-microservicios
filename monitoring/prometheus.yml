@@ -16,8 +16,9 @@ scrape_configs:
       - targets: ['localhost:9090']
 
   - job_name: 'inventoryservice'
+    metrics_path: /actuator/prometheus
     static_configs:
-      - targets: ['localhost:8080']
+      - targets: ['host.docker.internal:8080']
 
   - job_name: 'bookingservice'
     static_configs:
