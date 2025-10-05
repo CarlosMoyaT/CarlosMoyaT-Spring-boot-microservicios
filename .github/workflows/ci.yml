@@ -25,10 +25,10 @@ jobs:
           java-version: '21'
           distribution: temurin
       - name: Build with Maven Wrapper
-        run: ./mvnw clean install
+        run: ./mvnw -f orderservice/pom.xml clean install
         working-directory: orderservice
       - name: Run Tests
-        run: ./mvnw test
+        run: ./mvnw -f orderservice/pom.xml test
         working-directory: orderservice
 
   deploy:
@@ -37,4 +37,5 @@ jobs:
     steps:
       - name: Deploy placeholder
         run: echo "Deploy step (custom implementation here)"
+
 
