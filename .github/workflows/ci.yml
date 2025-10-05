@@ -5,7 +5,7 @@ on:
     branches:
       - master
     paths:
-      - 'orderservice/**'
+      - 'orderservice/**'   
   pull_request:
     branches:
       - master
@@ -19,16 +19,20 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+
       - name: Set up JDK 21
         uses: actions/setup-java@v4
         with:
           java-version: '21'
           distribution: temurin
+
       - name: Build orderservice
-        run: orderservice/mvnw -f orderservice/pom.xml clean install
+        run: ./mvnw clean install
+        working-directory: orderservice
+
       - name: Run Tests orderservice
-        run: orderservice/mvnw -f orderservice/pom.xml test
-        
+        run: ./mvnw test
+        working-directory: orderservice
 
   deploy:
     runs-on: ubuntu-latest
@@ -36,6 +40,8 @@ jobs:
     steps:
       - name: Deploy placeholder
         run: echo "Deploy step (custom implementation here)"
+
+
 
 
 
