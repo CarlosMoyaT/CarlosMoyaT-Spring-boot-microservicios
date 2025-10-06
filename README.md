@@ -21,6 +21,7 @@ Consume the Kafka messages that are produced in the booking service.
 
 # BookingService
 A request is received to place an order for an event for a customer. The booking service will verify that the customer actually exists, and if so, it will retrieve from the inventory service information about the specific event, remaining capacity, ticket price...
+produces messages from Kafka to orderservice.
 
 
 
