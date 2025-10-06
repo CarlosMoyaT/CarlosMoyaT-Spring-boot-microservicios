@@ -4,8 +4,9 @@ Tickets purchasing for events based on microservices
 
 ![Diseño de Arquitectura](inventoryservice/docs/architecture-design/Diagram.png)
 
-# TECHNOLOGIES
-Java 21, Spring Boot 3, Maven, PostgreSQL, Kafka, Docker, Keycloak, Flyway, Lombok, Resilience 4j, Prometheus, Grafana
+# TECH STACK
+-Java 21, 
+Spring Boot 3, Maven, PostgreSQL, Kafka, Docker, Keycloak, Flyway, Lombok, Resilience 4j, Prometheus, Grafana
 
 
 # InventoryService
