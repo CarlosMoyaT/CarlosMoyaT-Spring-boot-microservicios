@@ -16,6 +16,7 @@ Handles the information of the event and the venue.
 
 
 # OrderService
+Consume the Kafka messages that are produced in the booking service.
 
 
 # BookingService
