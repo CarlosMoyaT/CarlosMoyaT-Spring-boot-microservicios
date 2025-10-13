@@ -14,6 +14,9 @@ import org.testcontainers.junit.jupiter.Testcontainers;
 @SpringBootTest
 public class OrderRepositoryTest {
 
+    @Autowired
+    private OrderRepository orderRepository;
+
     @Container
     static PostgreSQLContainer<?> pgvector = new PostgreSQLContainer<>("pgvector/pgvector:pg16");
 
@@ -24,10 +27,12 @@ public class OrderRepositoryTest {
         registry.add("spring.datasource.password", pgvector::getPassword);
     }
 
-    @Autowired
-    private OrderRepository orderRepository;
 
-    //tests, (se escriben como los unitarios)
+
+    //tests, (write same unit test)
+
+
+    
 
 
 }
