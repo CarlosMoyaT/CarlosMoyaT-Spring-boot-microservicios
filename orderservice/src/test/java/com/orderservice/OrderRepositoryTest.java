@@ -3,6 +3,8 @@ package com.orderservice;
 
 import com.orderservice.entity.Order;
 import com.orderservice.repository.OrderRepository;
+import org.flywaydb.core.Flyway;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -24,20 +26,22 @@ class OrderRepositoryTest {
     @Autowired
     private OrderRepository orderRepository;
 
+
     @Container
-    static PostgreSQLContainer<?> pgvector = new PostgreSQLContainer<>("pgvector/pgvector:pg16")
+    static PostgreSQLContainer<?> pgContainer = new PostgreSQLContainer<>("postgres:16")
             .withDatabaseName("orders")
             .withUsername("test")
             .withPassword("test");
 
     @DynamicPropertySource
     static void dynamicProperties(DynamicPropertyRegistry registry) {
-        registry.add("spring.datasource.url", pgvector::getJdbcUrl);
-        registry.add("spring.datasource.username", pgvector::getUsername);
-        registry.add("spring.datasource.password", pgvector::getPassword);
+        registry.add("spring.datasource.url", pgContainer::getJdbcUrl);
+        registry.add("spring.datasource.username", pgContainer::getUsername);
+        registry.add("spring.datasource.password", pgContainer::getPassword);
     }
 
-    //tests, (write same unit test)
+
+    //tests
 
     @Test
     void testSaveAndFindOrder() {
@@ -56,10 +60,6 @@ class OrderRepositoryTest {
 
     }
 
-
-
-
-    
 
 
 }
