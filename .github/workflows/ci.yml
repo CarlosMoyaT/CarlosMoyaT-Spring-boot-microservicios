@@ -16,6 +16,14 @@ jobs:
   build-and-test:
     runs-on: ubuntu-latest
 
+    services:
+      docker:
+        image: docker:dind
+        options: --privileged  
+        ports:
+          - 5432:5432
+          - 9092:9092
+
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -25,16 +33,26 @@ jobs:
         with:
           java-version: '21'
           distribution: 'temurin'
-          cache: 'maven' 
+          cache: 'maven'
+
+      - name: Set up Docker
+        uses: docker/setup-buildx-action@v3
+
+      - name: Verify Docker is running
+        run: |
+          docker version
+          docker info
 
       - name: Make mvnw executable
         run: chmod +x mvnw
         working-directory: orderservice
 
-      - name: Build and run tests (fail on warnings)
+      - name: Build and run tests (with Testcontainers)
+        env:
+          DOCKER_HOST: unix:///var/run/docker.sock
+          TESTCONTAINERS_RYUK_DISABLED: false
         run: ./mvnw clean verify -B -Dmaven.compiler.failOnWarning=true
         working-directory: orderservice
-        
 
       - name: Upload test reports
         if: always()
@@ -42,7 +60,6 @@ jobs:
         with:
           name: test-reports
           path: orderservice/target/surefire-reports/
-       
 
       - name: Upload code coverage (JaCoCo)
         if: always()
@@ -50,7 +67,11 @@ jobs:
         with:
           name: jacoco-report
           path: orderservice/target/site/jacoco/
-        
+
+
+
+
+
 
 
 
