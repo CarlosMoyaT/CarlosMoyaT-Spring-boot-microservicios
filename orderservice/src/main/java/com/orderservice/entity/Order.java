@@ -16,7 +16,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@Table(name = "`order`")
+@Table(name = "orders")
 public class Order {
 
     @Id
@@ -30,7 +30,7 @@ public class Order {
     private Long ticketCount;
 
     @CreationTimestamp
-    @Column(name = "place_at", updatable = false, nullable = false)
+    @Column(name = "placed_at", updatable = false, nullable = false)
     private LocalDateTime placedAt;
 
     @Column(name = "customer_id")

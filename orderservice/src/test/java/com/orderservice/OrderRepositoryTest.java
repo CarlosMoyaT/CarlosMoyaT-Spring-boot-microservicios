@@ -18,7 +18,6 @@ import java.math.BigDecimal;
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 
 @Testcontainers
-@DataJpaTest
 @SpringBootTest
 class OrderRepositoryTest {
 
