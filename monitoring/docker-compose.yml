@@ -1,6 +1,39 @@
 version: "3.8"
 
 services:
+  app:
+    build: .
+    container_name: spring-boot-app
+    ports:
+      - "8080:8080"
+    environment:
+      - OTEL_SERVICE_NAME=my-spring-service
+      - OTEL_EXPORTER_OTLP_ENDPOINT=http://otel-collector:4317
+      - OTEL_METRICS_EXPORTER=otlp
+      - OTEL_LOGS_EXPORTER=otlp
+    depends_on:
+      - otel-collector
+
+  otel-collector:
+    image: otel/opentelemetry-collector:0.100.0
+    container_name: otel-collector
+    volumes:
+      - ./otel-config.yaml:/etc/otel/config.yaml
+    command: ["--config", "/etc/otel/config.yaml"]
+    ports:
+      - "4317:4317" # gRPC (para traces/logs)
+      - "4318:4318" # HTTP
+    depends_on:
+      - loki
+      - prometheus
+
+  loki:
+    image: grafana/loki:2.9.0
+    container_name: loki
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki/local-config.yaml
+
   prometheus:
     image: prom/prometheus:latest
     container_name: prometheus
@@ -16,3 +49,4 @@ services:
       - "3000:3000"
     depends_on:
       - prometheus
+      - loki
