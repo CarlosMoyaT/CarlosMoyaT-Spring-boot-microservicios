@@ -46,6 +46,7 @@ Follow these steps to deploy the monitoring stack:
    git clone https://github.com/CarlosMoyaT/CarlosMoyaT-Spring-boot-microservicios.git  
    cd CarlosMoyaT-Spring-boot-microservicios/monitoring
    docker compose up -d
+```
 
 
 
