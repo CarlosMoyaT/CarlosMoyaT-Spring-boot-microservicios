@@ -32,11 +32,20 @@ This project is built using a modern microservice-based architecture leveraging 
 - Centralize metrics in Prometheus.
 - Visualize metrics using Grafana.
 - Facilitate alerts, dashboards, and proactive monitoring.
-- 
+  
 ## Architecture
-**Spring Boot + Actuator: Each microservice exposes metrics at the `/actuator/prometheus` endpoint.  
-**Prometheus**: Periodically scrapes these endpoints and stores the collected metrics.  
-**Grafana**: Configured with Prometheus as a data source to display dashboards with relevant metrics (latency, request counts, memory usage, etc.).  
+- **Spring Boot + Actuator: Each microservice exposes metrics at the `/actuator/prometheus` endpoint.  
+- **Prometheus**: Periodically scrapes these endpoints and stores the collected metrics.  
+- **Grafana**: Configured with Prometheus as a data source to display dashboards with relevant metrics (latency, request counts, memory usage, etc.).
+
+## Deployment
+Follow these steps to deploy the monitoring stack:
+
+1. Clone your repository and navigate to the `monitoring` folder:  
+   git clone https://github.com/CarlosMoyaT/CarlosMoyaT-Spring-boot-microservicios.git  
+   cd CarlosMoyaT-Spring-boot-microservicios/monitoring
+   docker compose up -d
+
 
 
 # InventoryService
