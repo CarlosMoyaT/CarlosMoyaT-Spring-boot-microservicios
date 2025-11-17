@@ -28,8 +28,15 @@ This project is built using a modern microservice-based architecture leveraging 
 - **Docker** – Used to containerize microservices, ensuring environment consistency and simplifying deployment and scalability.
 
 ## Monitoring & Observability
-- **Prometheus** – Metrics collection and monitoring system for gathering time-series data from the services.
-- **Grafana** – Visualization and dashboarding tool for analyzing system metrics and application performance.
+- Collect metrics from your microservices (latencies, counters, system usage, etc.).
+- Centralize metrics in Prometheus.
+- Visualize metrics using Grafana.
+- Facilitate alerts, dashboards, and proactive monitoring.
+- 
+## Architecture
+**Spring Boot + Actuator: Each microservice exposes metrics at the `/actuator/prometheus` endpoint.  
+**Prometheus**: Periodically scrapes these endpoints and stores the collected metrics.  
+**Grafana**: Configured with Prometheus as a data source to display dashboards with relevant metrics (latency, request counts, memory usage, etc.).  
 
 
 # InventoryService
