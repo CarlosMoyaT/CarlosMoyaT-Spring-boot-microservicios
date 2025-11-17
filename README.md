@@ -41,6 +41,7 @@ This project is built using a modern microservice-based architecture leveraging 
 ## Deployment
 Follow these steps to deploy the monitoring stack:
 
+```bash
 1. Clone your repository and navigate to the `monitoring` folder:  
    git clone https://github.com/CarlosMoyaT/CarlosMoyaT-Spring-boot-microservicios.git  
    cd CarlosMoyaT-Spring-boot-microservicios/monitoring
