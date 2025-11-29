@@ -52,16 +52,16 @@ Prerequisites:
   
 1.Clone the repository and start all services
 ```bash
-   git clone https://github.com/CarlosMoyaT/CarlosMoyaT-Spring-boot-microservicios.git
-   cd CarlosMoyaT-Spring-boot-microservicios
+git clone https://github.com/CarlosMoyaT/CarlosMoyaT-Spring-boot-microservicios.git
+cd CarlosMoyaT-Spring-boot-microservicios
 ```
 ```bash
 docker compose up -d
 ```
 2.Navigate to monitoring folder and start monitoring services
 ```bash
-   cd monitoring
-   docker compose up -d
+cd monitoring
+docker compose up -d
 ```
 
 
