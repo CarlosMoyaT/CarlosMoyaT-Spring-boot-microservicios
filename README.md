@@ -20,14 +20,14 @@ The platform follows a microservices architecture with the following characteris
 - **Resilience4j** – Implements fault tolerance patterns such as circuit breakers, retries, and rate limiters to improve service resilience.
 
 ## Database
-- **PostgreSQL** – Relational database management system used for persistent data storage and transactional operations.
-- **Flyway** – Handles database versioning and schema migrations in a controlled and automated way.
+- **PostgreSQL** – Primary relational database for transactional data.
+- **Flyway** – Database version control and schema migrations.
 
 ## Messaging
-- **Apache Kafka** – Distributed streaming platform used for asynchronous communication and event-driven data flow between services.
+- **Apache Kafka** – Distributed event streaming platform for asynchronous service communication.
 
 ## Security & Authentication
-- **Keycloak** – Open-source identity and access management solution providing authentication, authorization, and single sign-on (SSO).
+- **Keycloak** – Identity and access management with SSO support.
 
 ## Containerization
 - **Docker** – Used to containerize microservices, ensuring environment consistency and simplifying deployment and scalability.
@@ -39,7 +39,7 @@ The platform follows a microservices architecture with the following characteris
 - Facilitate alerts, dashboards, and proactive monitoring.
   
 ## Architecture
-- **Spring Boot + Actuator: Each microservice exposes metrics at the `/actuator/prometheus` endpoint.  
+- **Spring Boot + Actuator: Exposes application metrics at /actuator/prometheus.  
 - **Prometheus**: Periodically scrapes these endpoints and stores the collected metrics.  
 - **Grafana**: Configured with Prometheus as a data source to display dashboards with relevant metrics (latency, request counts, memory usage, etc.).
 
