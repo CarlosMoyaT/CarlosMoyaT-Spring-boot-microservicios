@@ -43,13 +43,17 @@ The platform follows a microservices architecture with the following characteris
 - **Prometheus**: Periodically scrapes these endpoints and stores the collected metrics.  
 - **Grafana**: Configured with Prometheus as a data source to display dashboards with relevant metrics (latency, request counts, memory usage, etc.).
 
-## Deployment
-Follow these steps to deploy the monitoring stack:
+## Getting started
+Prerequisites:
+- Docker and Docker Compose installed
+- Git
+- Java 21 (for local development)
+- Maven (for local development)
 
 ```bash
-1. Clone your repository and navigate to the `monitoring` folder:  
-   git clone https://github.com/CarlosMoyaT/CarlosMoyaT-Spring-boot-microservicios.git  
-   cd CarlosMoyaT-Spring-boot-microservicios/monitoring
+   git clone https://github.com/CarlosMoyaT/CarlosMoyaT-Spring-boot-microservicios.git
+   cd CarlosMoyaT-Spring-boot-microservicios
+
    docker compose up -d
 ```
 
