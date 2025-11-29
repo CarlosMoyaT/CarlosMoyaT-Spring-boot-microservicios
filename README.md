@@ -49,11 +49,19 @@ Prerequisites:
 - Git
 - Java 21 (for local development)
 - Maven (for local development)
-
+  
+1.Clone the repository
 ```bash
    git clone https://github.com/CarlosMoyaT/CarlosMoyaT-Spring-boot-microservicios.git
    cd CarlosMoyaT-Spring-boot-microservicios
-
+```
+```bash
+docker compose up -d
+```
+2.Navigate to monitoring folder
+Navigate to monitoring folder
+```bash
+   cd monitoring
    docker compose up -d
 ```
 
