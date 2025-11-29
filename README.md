@@ -7,10 +7,10 @@ Tickets purchasing for events based on microservices
 # Architecture Overview
 The platform follows a microservices architecture with the following characteristics:
 
-Event-Driven Communication: Services communicate asynchronously via Apache Kafka
-Service Independence: Each microservice can be deployed and scaled independently
-Centralized Authentication: Keycloak manages authentication and authorization
-Distributed Monitoring: Prometheus and Grafana provide observability across services
+- Event-Driven Communication: Services communicate asynchronously via Apache Kafka.
+- Service Independence: Each microservice can be deployed and scaled independently.
+- Centralized Authentication: Keycloak manages authentication and authorization.
+- Distributed Monitoring: Prometheus and Grafana provide observability across services.
 
 ## Backend
 - **Java 21** – Provides modern language features and performance improvements for building robust backend applications.
