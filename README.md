@@ -67,7 +67,18 @@ docker compose up -d
 
 
 # InventoryService
-Handles the information of the event and the venue.
+The service provides functionality to:
+
+- Retrieve information about available events
+- Manage event capacity
+- Administer venue (location) information
+  
+ 
+Once the application is started, you can access:
+
+Swagger UI: http://localhost:8080/swagger-ui.html
+
+Update inventory in real time through Kafka events
 ![](inventoryservice/docs/documentationimg/InventoryService%20swagger.JPG)
 ![](inventoryservice/docs/documentationimg/Metric%20prometheus.JPG)
 
