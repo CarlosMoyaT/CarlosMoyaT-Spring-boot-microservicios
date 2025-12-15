@@ -76,7 +76,8 @@ The service provides functionality to:
  
 Once the application is started, you can access:
 
-Swagger UI: http://localhost:8080/swagger-ui.html
+- Swagger UI: http://localhost:8080/swagger-ui.html
+- Prometheus Metrics: http://localhost:8080/actuator/prometheus
 
 Update inventory in real time through Kafka events
 ![](inventoryservice/docs/documentationimg/InventoryService%20swagger.JPG)
