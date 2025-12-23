@@ -28,6 +28,7 @@ The platform follows a microservices architecture with the following characteris
 
 ## Security & Authentication
 - **Keycloak** – Identity and access management with SSO support.
+- **Circuit Breaker pattern** – A resilience strategy in distributed systems that prevents cascading failures by detecting when a service is failing.
 
 ## Containerization
 - **Docker** – Used to containerize microservices, ensuring environment consistency and simplifying deployment and scalability.
