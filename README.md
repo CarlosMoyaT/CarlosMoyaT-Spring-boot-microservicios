@@ -11,6 +11,7 @@ The platform follows a microservices architecture with the following characteris
 - Service Independence: Each microservice can be deployed and scaled independently.
 - Centralized Authentication: Keycloak manages authentication and authorization.
 - Distributed Monitoring: Prometheus and Grafana provide observability across services.
+- Circuit Breaker pattern: A resilience strategy in distributed systems that prevents cascading failures by detecting when a service is failing.
 
 ## Backend
 - **Java 21** – Provides modern language features and performance improvements for building robust backend applications.
@@ -28,7 +29,6 @@ The platform follows a microservices architecture with the following characteris
 
 ## Security & Authentication
 - **Keycloak** – Identity and access management with SSO support.
-- **Circuit Breaker pattern** – A resilience strategy in distributed systems that prevents cascading failures by detecting when a service is failing.
 
 ## Containerization
 - **Docker** – Used to containerize microservices, ensuring environment consistency and simplifying deployment and scalability.
