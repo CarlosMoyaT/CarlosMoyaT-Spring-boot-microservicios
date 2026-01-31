@@ -4,8 +4,14 @@ Tickets purchasing for events based on microservices
 
 ![Diseño de Arquitectura](inventoryservice/docs/architecture-design/Diagram.png)
 
-# TECH STACK
-This project is built using a modern microservice-based architecture leveraging the following technologies:
+# Architecture Overview
+The platform follows a microservices architecture with the following characteristics:
+
+- Event-Driven Communication: Services communicate asynchronously via Apache Kafka.
+- Service Independence: Each microservice can be deployed and scaled independently.
+- Centralized Authentication: Keycloak manages authentication and authorization.
+- Distributed Monitoring: Prometheus and Grafana provide observability across services.
+- Circuit Breaker pattern: A resilience strategy in distributed systems that prevents cascading failures by detecting when a service is failing.
 
 ## Backend
 - **Java 21** – Provides modern language features and performance improvements for building robust backend applications.
@@ -15,25 +21,66 @@ This project is built using a modern microservice-based architecture leveraging 
 - **Resilience4j** – Implements fault tolerance patterns such as circuit breakers, retries, and rate limiters to improve service resilience.
 
 ## Database
-- **PostgreSQL** – Relational database management system used for persistent data storage and transactional operations.
-- **Flyway** – Handles database versioning and schema migrations in a controlled and automated way.
+- **PostgreSQL** – Primary relational database for transactional data.
+- **Flyway** – Database version control and schema migrations.
 
 ## Messaging
-- **Apache Kafka** – Distributed streaming platform used for asynchronous communication and event-driven data flow between services.
+- **Apache Kafka** – Distributed event streaming platform for asynchronous service communication.
 
 ## Security & Authentication
-- **Keycloak** – Open-source identity and access management solution providing authentication, authorization, and single sign-on (SSO).
+- **Keycloak** – Identity and access management with SSO support.
 
 ## Containerization
 - **Docker** – Used to containerize microservices, ensuring environment consistency and simplifying deployment and scalability.
 
 ## Monitoring & Observability
-- **Prometheus** – Metrics collection and monitoring system for gathering time-series data from the services.
-- **Grafana** – Visualization and dashboarding tool for analyzing system metrics and application performance.
+- Collect metrics from your microservices (latencies, counters, system usage, etc.).
+- Centralize metrics in Prometheus.
+- Visualize metrics using Grafana.
+- Facilitate alerts, dashboards, and proactive monitoring.
+  
+## Architecture
+- **Spring Boot + Actuator: Exposes application metrics at /actuator/prometheus.  
+- **Prometheus**: Periodically scrapes these endpoints and stores the collected metrics.  
+- **Grafana**: Configured with Prometheus as a data source to display dashboards with relevant metrics (latency, request counts, memory usage, etc.).
+
+## Getting started
+Prerequisites:
+- Docker and Docker Compose installed
+- Git
+- Java 21 (for local development)
+- Maven (for local development)
+  
+1.Clone the repository and start all services
+```bash
+git clone https://github.com/CarlosMoyaT/CarlosMoyaT-Spring-boot-microservicios.git
+cd CarlosMoyaT-Spring-boot-microservicios
+```
+```bash
+docker compose up -d
+```
+2.Navigate to monitoring folder and start monitoring services
+```bash
+cd monitoring
+docker compose up -d
+```
+
 
 
 # InventoryService
-Handles the information of the event and the venue.
+The service provides functionality to:
+
+- Retrieve information about available events
+- Manage event capacity
+- Administer venue (location) information
+  
+ 
+Once the application is started, you can access:
+
+- Swagger UI: http://localhost:8080/swagger-ui.html
+- Prometheus Metrics: http://localhost:8080/actuator/prometheus
+
+Update inventory in real time through Kafka events
 ![](inventoryservice/docs/documentationimg/InventoryService%20swagger.JPG)
 ![](inventoryservice/docs/documentationimg/Metric%20prometheus.JPG)
 
