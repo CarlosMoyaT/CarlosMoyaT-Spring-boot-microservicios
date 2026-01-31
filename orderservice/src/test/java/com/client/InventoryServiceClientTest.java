@@ -1,4 +1,4 @@
-package com.orderservice;
+package com.client;
 
 
 import com.orderservice.client.InventoryServiceClient;
