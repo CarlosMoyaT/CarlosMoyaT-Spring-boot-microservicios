@@ -1,4 +1,4 @@
-exporte interface BookingRequest {
+export interface BookingRequest {
     eventId: number;
     customerId: string;
     quantity: number;
