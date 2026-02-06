@@ -1,0 +1,89 @@
+<div class="event-list-container">
+  <header class="page-header">
+    <h1 class="page-title">Próximos Eventos</h1>
+    <p class="page-subtitle">Descubre y reserva entradas para los mejores eventos</p>
+  </header>
+
+  @if (loading()) {
+    <div class="loading-container">
+      <mat-spinner></mat-spinner>
+      <p>Cargando eventos...</p>
+    </div>
+  }
+
+  @if (error()) {
+    <div class="error-container">
+      <mat-icon>error_outline</mat-icon>
+      <p>{{ error() }}</p>
+      <button mat-raised-button color="primary" (click)="loadEvents()">
+        Reintentar
+      </button>
+    </div>
+  }
+
+  @if (!loading() && !error() && events().length === 0) {
+    <div class="empty-state">
+      <mat-icon>event_busy</mat-icon>
+      <h2>No hay eventos disponibles</h2>
+      <p>Vuelve pronto para ver nuevos eventos</p>
+    </div>
+  }
+
+  @if (!loading() && !error() && events().length > 0) {
+    <div class="events-grid">
+      @for (event of events(); track event.id) {
+        <mat-card class="event-card" (click)="viewEventDetail(event.id)">
+          <div class="event-image" [style.background-image]="'url(' + (event.imageUrl || 'assets/default-event.jpg') + ')'">
+            <div class="event-date-badge">
+              <span class="month">{{ event.eventDate | date:'MMM' }}</span>
+              <span class="day">{{ event.eventDate | date:'dd' }}</span>
+            </div>
+          </div>
+
+          <mat-card-content>
+            <div class="event-info">
+              <h2 class="event-name">{{ event.name }}</h2>
+              
+              <div class="event-venue">
+                <mat-icon>location_on</mat-icon>
+                <span>{{ event.venue.name }}, {{ event.venue.city }}</span>
+              </div>
+
+              <p class="event-description">{{ event.description }}</p>
+
+              <div class="event-details">
+                <div class="price">
+                  <span class="price-label">Desde</span>
+                  <span class="price-amount">{{ event.ticketPrice | currency:'EUR' }}</span>
+                </div>
+
+                <div class="availability">
+                  <mat-chip 
+                    [class]="getAvailabilityClass(getAvailabilityPercentage(event))"
+                    class="availability-chip">
+                    {{ event.availableCapacity }} disponibles
+                  </mat-chip>
+                </div>
+              </div>
+
+              <div class="capacity-bar">
+                <div 
+                  class="capacity-fill"
+                  [class]="getAvailabilityClass(getAvailabilityPercentage(event))"
+                  [style.width.%]="getAvailabilityPercentage(event)">
+                </div>
+              </div>
+            </div>
+          </mat-card-content>
+
+          <mat-card-actions>
+            <button mat-raised-button color="primary" class="book-button">
+              <mat-icon>confirmation_number</mat-icon>
+              Reservar Ahora
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      }
+    </div>
+  }
+</div>
