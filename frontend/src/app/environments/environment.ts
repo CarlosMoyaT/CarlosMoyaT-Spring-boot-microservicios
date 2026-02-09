@@ -6,4 +6,4 @@ export const environment = {
         realm: 'tickets-realm',
         clientId: 'tickets-client'
     }
-}
+};
