@@ -1,0 +1,20 @@
+<mat-toolbar class="navbar">
+  <div class="navbar-content">
+    <a routerLink="/home" class="logo">
+      <mat-icon>confirmation_number</mat-icon>
+      <span class="logo-text">TicketHub</span>
+    </a>
+
+    <nav class="nav-links">
+      <a mat-button routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}">
+        Inicio
+      </a>
+      <a mat-button routerLink="/events" routerLinkActive="active">
+        Eventos
+      </a>
+      <a mat-button routerLink="/orders" routerLinkActive="active">
+        Mis Reservas
+      </a>
+    </nav>
+  </div>
+</mat-toolbar>

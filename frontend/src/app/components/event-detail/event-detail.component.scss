@@ -1,0 +1,420 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+.event-detail-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  position: relative;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3), transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(255, 135, 135, 0.3), transparent 50%);
+    pointer-events: none;
+  }
+}
+
+.loading-container,
+.error-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  color: #ffffff;
+  text-align: center;
+
+  mat-icon {
+    font-size: 4rem;
+    width: 4rem;
+    height: 4rem;
+    margin-bottom: 1rem;
+  }
+
+  p {
+    color: #ffffff;
+    font-family: 'Poppins', sans-serif;
+  }
+}
+
+.event-detail-content {
+  position: relative;
+  z-index: 1;
+}
+
+.back-button {
+  position: fixed;
+  top: 2rem;
+  left: 2rem;
+  z-index: 1000;
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+
+  &:hover {
+    background: #ffffff;
+    transform: scale(1.1);
+  }
+
+  mat-icon {
+    color: #667eea;
+  }
+}
+
+.event-hero {
+  width: 100%;
+  margin-bottom: 2rem;
+
+  .event-hero-image {
+    height: 500px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+    background-color: #667eea;
+
+    .overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,0.3), rgba(0,0,0,0.7));
+    }
+
+    .event-hero-content {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: 3rem;
+      color: #ffffff;
+
+      .event-title {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin: 0 0 1.5rem 0;
+        text-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+        line-height: 1.2;
+
+        @media (max-width: 768px) {
+          font-size: 2.5rem;
+        }
+      }
+
+      .event-meta {
+        display: flex;
+        gap: 2rem;
+        flex-wrap: wrap;
+
+        .meta-item {
+          display: flex;
+          align-items: center;
+          gap: 0.5rem;
+          font-family: 'Poppins', sans-serif;
+          font-size: 1.1rem;
+          background: rgba(255, 255, 255, 0.2);
+          backdrop-filter: blur(10px);
+          padding: 0.75rem 1.25rem;
+          border-radius: 50px;
+
+          mat-icon {
+            font-size: 1.5rem;
+            width: 1.5rem;
+            height: 1.5rem;
+          }
+        }
+      }
+    }
+  }
+}
+
+.event-details-section {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 2rem 3rem;
+
+  .details-grid {
+    display: grid;
+    grid-template-columns: 1fr 400px;
+    gap: 2rem;
+
+    @media (max-width: 1024px) {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.main-details {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.info-card {
+  border-radius: 16px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
+
+  mat-card-header {
+    padding: 1.5rem 1.5rem 0 !important;
+
+    mat-card-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+  }
+
+  mat-card-content {
+    padding: 1.5rem !important;
+  }
+
+  .event-description {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #555;
+    margin: 0;
+  }
+
+  .venue-info {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    .info-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+
+      mat-icon {
+        color: #667eea;
+        font-size: 1.75rem;
+        width: 1.75rem;
+        height: 1.75rem;
+      }
+
+      .label {
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.85rem;
+        color: #999;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        margin-bottom: 0.25rem;
+      }
+
+      .value {
+        font-family: 'Poppins', sans-serif;
+        font-size: 1.05rem;
+        color: #333;
+        font-weight: 500;
+      }
+    }
+  }
+}
+
+.booking-sidebar {
+  @media (max-width: 1024px) {
+    position: sticky;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    box-shadow: 0 -4px 20px rgba(0, 0, 0, 0.15);
+    border-radius: 16px 16px 0 0;
+  }
+}
+
+.booking-card {
+  border-radius: 16px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
+  position: sticky;
+  top: 2rem;
+
+  @media (max-width: 1024px) {
+    box-shadow: none !important;
+    position: static;
+  }
+
+  mat-card-content {
+    padding: 2rem !important;
+  }
+
+  .price-section {
+    text-align: center;
+    margin-bottom: 2rem;
+
+    .price-label {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.9rem;
+      color: #999;
+      margin-bottom: 0.5rem;
+    }
+
+    .price-amount {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 3rem;
+      font-weight: 700;
+      color: #667eea;
+    }
+  }
+
+  mat-divider {
+    margin: 2rem 0;
+  }
+
+  .availability-section {
+    margin-bottom: 2rem;
+
+    .availability-header {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 1.5rem;
+
+      mat-icon {
+        color: #667eea;
+      }
+    }
+
+    .availability-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 1.5rem;
+
+      .stat {
+        text-align: center;
+        padding: 1rem;
+        background: #f8f9fa;
+        border-radius: 12px;
+
+        .stat-value {
+          font-family: 'Space Grotesk', sans-serif;
+          font-size: 2rem;
+          font-weight: 700;
+          color: #667eea;
+        }
+
+        .stat-label {
+          font-family: 'Poppins', sans-serif;
+          font-size: 0.85rem;
+          color: #666;
+          margin-top: 0.25rem;
+        }
+      }
+    }
+
+    .capacity-bar {
+      height: 8px;
+      background-color: #f0f0f0;
+      border-radius: 4px;
+      overflow: hidden;
+      margin-bottom: 1rem;
+
+      .capacity-fill {
+        height: 100%;
+        transition: width 0.3s ease;
+        border-radius: 4px;
+
+        &.high {
+          background: linear-gradient(90deg, #28a745, #20c997);
+        }
+
+        &.medium {
+          background: linear-gradient(90deg, #ffc107, #ff9800);
+        }
+
+        &.low {
+          background: linear-gradient(90deg, #dc3545, #c82333);
+        }
+      }
+    }
+
+    .availability-chip {
+      width: 100%;
+      justify-content: center;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+      padding: 0.75rem 1rem;
+
+      &.high {
+        background-color: #d4edda;
+        color: #155724;
+      }
+
+      &.medium {
+        background-color: #fff3cd;
+        color: #856404;
+      }
+
+      &.low {
+        background-color: #f8d7da;
+        color: #721c24;
+      }
+    }
+  }
+
+  .book-button {
+    width: 100%;
+    height: 56px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 1.1rem;
+    font-weight: 600;
+    border-radius: 12px !important;
+    text-transform: none;
+    letter-spacing: 0.5px;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    margin-bottom: 1.5rem;
+
+    mat-icon {
+      margin-right: 0.5rem;
+    }
+
+    &:not(:disabled):hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+    }
+
+    &:disabled {
+      background: #ccc;
+      color: #666;
+    }
+  }
+
+  .safety-badges {
+    display: flex;
+    justify-content: space-around;
+    padding-top: 1rem;
+    border-top: 1px solid #f0f0f0;
+
+    .badge {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.5rem;
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.8rem;
+      color: #666;
+
+      mat-icon {
+        color: #667eea;
+        font-size: 1.5rem;
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+    }
+  }
+}

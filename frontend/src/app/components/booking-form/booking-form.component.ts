@@ -11,7 +11,7 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { EventService } from '../../services/event.service';
 import { BookingService } from '../../services/booking.service';
-import { Event } from '../../models/event.model';
+import { EventModel } from '../../models/event.model';
 import { BookingRequest } from '../../models/booking.model';
 
 @Component({
@@ -32,7 +32,7 @@ import { BookingRequest } from '../../models/booking.model';
     styleUrls: ['./booking-form.component.scss']
 })
 
-export class BoookingFormComponent implements OnInit {
+export class BookingFormComponent implements OnInit {
 
     private fb = inject(FormBuilder);
     private eventService = inject(EventService);
@@ -41,7 +41,7 @@ export class BoookingFormComponent implements OnInit {
     private router = inject(Router);
     private snackBar = inject(MatSnackBar);
 
-    event = signal<Event | null>(null);
+    event = signal<EventModel | null>(null);
     loading = signal<boolean>(true);
     submitting = signal<boolean>(false);
 
@@ -60,17 +60,17 @@ export class BoookingFormComponent implements OnInit {
 
     loadEvent(id: number): void {
         this.loading.set(true);
-        this.eventService.getEventById(id),subscribe({
-            next: (data) => {
+        this.eventService.getEventById(id).subscribe({
+            next: (data: EventModel) => {
                 this.event.set(data);
                 this.bookingForm.get('quantity')?.setValidators([
                     Validators.required,
                     Validators.min(1),
-                    Validators.max(matchMedia.min(10, data.availableCapacity))
+                    Validators.max(Math.min(10, data.availableCapacity))
                 ]);
                 this.loading.set(false);
             },
-            error: (err) => {
+            error: (err: any) => {
                 console.error('Error loading event:', err)
                 this.snackBar.open('Error to load the event', 'close', { duration: 3000 });
                 this.router.navigate(['/events']);
@@ -88,7 +88,7 @@ export class BoookingFormComponent implements OnInit {
         if (this.bookingForm.valid && this.event()) {
             this.submitting.set(true);
 
-            const BookingRequest: BookingRequest = {
+            const bookingRequest: BookingRequest = {
                 eventId: this.event()!.id,
                 customerId: this.generateCustomerId(),
                 customerName: this.bookingForm.get('customerName')?.value,

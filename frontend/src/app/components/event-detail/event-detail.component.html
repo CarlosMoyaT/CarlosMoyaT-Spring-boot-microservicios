@@ -1,0 +1,168 @@
+<div class="event-detail-container">
+  @if (loading()) {
+    <div class="loading-container">
+      <mat-spinner></mat-spinner>
+      <p>Cargando detalles del evento...</p>
+    </div>
+  }
+
+  @if (error()) {
+    <div class="error-container">
+      <mat-icon>error_outline</mat-icon>
+      <p>{{ error() }}</p>
+      <button mat-raised-button color="primary" (click)="goBack()">
+        Volver a eventos
+      </button>
+    </div>
+  }
+
+  @if (!loading() && !error() && event()) {
+    <div class="event-detail-content">
+      <button mat-icon-button class="back-button" (click)="goBack()">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+
+      <div class="event-hero">
+        <div class="event-hero-image" 
+             [style.background-image]="'url(' + (event()!.imageUrl || 'assets/default-event.jpg') + ')'">
+          <div class="overlay"></div>
+          <div class="event-hero-content">
+            <h1 class="event-title">{{ event()!.name }}</h1>
+            <div class="event-meta">
+              <div class="meta-item">
+                <mat-icon>event</mat-icon>
+                <span>{{ event()!.eventDate | date:'EEEE, d MMMM y' }}</span>
+              </div>
+              <div class="meta-item">
+                <mat-icon>location_on</mat-icon>
+                <span>{{ event()!.venue.name }}, {{ event()!.venue.city }}</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="event-details-section">
+        <div class="details-grid">
+          <div class="main-details">
+            <mat-card class="info-card">
+              <mat-card-header>
+                <mat-card-title>Descripción del Evento</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <p class="event-description">{{ event()!.description }}</p>
+              </mat-card-content>
+            </mat-card>
+
+            <mat-card class="info-card">
+              <mat-card-header>
+                <mat-card-title>Información del Lugar</mat-card-title>
+              </mat-card-header>
+              <mat-card-content>
+                <div class="venue-info">
+                  <div class="info-row">
+                    <mat-icon>business</mat-icon>
+                    <div>
+                      <div class="label">Nombre</div>
+                      <div class="value">{{ event()!.venue.name }}</div>
+                    </div>
+                  </div>
+                  <div class="info-row">
+                    <mat-icon>place</mat-icon>
+                    <div>
+                      <div class="label">Ubicación</div>
+                      <div class="value">{{ event()!.venue.location }}, {{ event()!.venue.city }}</div>
+                    </div>
+                  </div>
+                  <div class="info-row">
+                    <mat-icon>people</mat-icon>
+                    <div>
+                      <div class="label">Capacidad Total</div>
+                      <div class="value">{{ event()!.venue.capacity }} personas</div>
+                    </div>
+                  </div>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
+
+          <div class="booking-sidebar">
+            <mat-card class="booking-card">
+              <mat-card-content>
+                <div class="price-section">
+                  <div class="price-label">Precio por entrada</div>
+                  <div class="price-amount">{{ event()!.ticketPrice | currency:'EUR' }}</div>
+                </div>
+
+                <mat-divider></mat-divider>
+
+                <div class="availability-section">
+                  <div class="availability-header">
+                    <mat-icon>confirmation_number</mat-icon>
+                    <span>Disponibilidad</span>
+                  </div>
+                  
+                  <div class="availability-stats">
+                    <div class="stat">
+                      <div class="stat-value">{{ event()!.availableCapacity }}</div>
+                      <div class="stat-label">Entradas disponibles</div>
+                    </div>
+                    <div class="stat">
+                      <div class="stat-value">{{ event()!.totalCapacity - event()!.availableCapacity }}</div>
+                      <div class="stat-label">Entradas vendidas</div>
+                    </div>
+                  </div>
+
+                  <div class="capacity-bar">
+                    <div 
+                      class="capacity-fill"
+                      [class]="getAvailabilityClass(getAvailabilityPercentage(event()!))"
+                      [style.width.%]="getAvailabilityPercentage(event()!)">
+                    </div>
+                  </div>
+
+                  <mat-chip 
+                    [class]="getAvailabilityClass(getAvailabilityPercentage(event()!))"
+                    class="availability-chip">
+                    @if (getAvailabilityPercentage(event()!) > 50) {
+                      <span>¡Buena disponibilidad!</span>
+                    } @else if (getAvailabilityPercentage(event()!) > 20) {
+                      <span>Disponibilidad limitada</span>
+                    } @else {
+                      <span>¡Últimas entradas!</span>
+                    }
+                  </mat-chip>
+                </div>
+
+                <button 
+                  mat-raised-button 
+                  color="primary" 
+                  class="book-button"
+                  [disabled]="event()!.availableCapacity === 0"
+                  (click)="bookEvent()">
+                  <mat-icon>shopping_cart</mat-icon>
+                  @if (event()!.availableCapacity > 0) {
+                    <span>Reservar Entradas</span>
+                  } @else {
+                    <span>Agotado</span>
+                  }
+                </button>
+
+                <div class="safety-badges">
+                  <div class="badge">
+                    <mat-icon>verified_user</mat-icon>
+                    <span>Compra segura</span>
+                  </div>
+                  <div class="badge">
+                    <mat-icon>local_activity</mat-icon>
+                    <span>Entradas digitales</span>
+                  </div>
+                </div>
+              </mat-card-content>
+            </mat-card>
+          </div>
+        </div>
+      </div>
+    </div>
+  }
+</div>

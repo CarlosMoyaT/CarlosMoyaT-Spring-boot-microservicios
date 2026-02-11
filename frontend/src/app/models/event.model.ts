@@ -1,4 +1,4 @@
-export interface Event {
+export interface EventModel {
     id: number;
     name: string;
     description: string;
@@ -6,8 +6,8 @@ export interface Event {
     ticketPrice: number;
     availableCapacity: number;
     totalCapacity: number;
-    venue: VideoEncoderSupport;
-    imagenUrl?: string;
+    venue: Venue;
+    imageUrl?: string;
 }
 
 export interface Venue {

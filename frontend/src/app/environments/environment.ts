@@ -1,9 +1,9 @@
 export const environment = {
-    production: true,
-    apiUrl: //my backend url onrender.com (y cambiar cuando despliegue en render)
-    keycloak: {
-        url: //keycloak url on render.com
-        realm: 'tickets-realm',
-        clientId: 'tickets-client'
-    }
+  production: true,
+  apiUrl: '', // añair  al desplegar en render
+  keycloak: {
+    url: 'https://your-keycloak-url.onrender.com',
+    realm: 'tickets-realm',
+    clientId: 'tickets-client'
+  }
 };

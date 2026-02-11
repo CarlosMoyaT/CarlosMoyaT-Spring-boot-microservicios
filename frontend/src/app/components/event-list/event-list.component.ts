@@ -7,7 +7,7 @@ import { MatChipsModule } from '@angular/material/chips';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatIconModule } from '@angular/material/icon';
 import { EventService } from '../../services/event.service';
-import { Event } from '../../models/event.model';
+import { EventModel } from '../../models/event.model';
 
 
 @Component({
@@ -29,7 +29,7 @@ export class EventListComponent implements OnInit {
     private eventService = inject(EventService);
     private router = inject(Router);
 
-    events = signal<Event[]>([]);
+    events = signal<EventModel[]>([]);
     loading = signal<boolean>(true);
     error = signal<string | null>(null);
 
@@ -57,7 +57,7 @@ viewEventDetail(eventId: number): void {
     this.router.navigate(['/events', eventId]);
 }
 
-getAvailabilityPercentage(event: Event): number {
+getAvailabilityPercentage(event: EventModel): number {
     return (event.availableCapacity / event.totalCapacity) + 100;
 }
 
