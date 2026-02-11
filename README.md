@@ -13,6 +13,9 @@ The platform follows a microservices architecture with the following characteris
 - Distributed Monitoring: Prometheus and Grafana provide observability across services.
 - Circuit Breaker pattern: A resilience strategy in distributed systems that prevents cascading failures by detecting when a service is failing.
 
+## Frontend
+- **Angular 20** – 
+
 ## Backend
 - **Java 21** – Provides modern language features and performance improvements for building robust backend applications.
 - **Spring Boot 3** – Core framework for developing production-grade Spring-based microservices with minimal configuration.
