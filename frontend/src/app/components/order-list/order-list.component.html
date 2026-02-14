@@ -1,0 +1,101 @@
+<div class="order-list-container">
+  <header class="page-header">
+    <h1 class="page-title">Mis Reservas</h1>
+    <p class="page-subtitle">Gestiona y revisa tus reservas de eventos</p>
+  </header>
+
+  @if (loading()) {
+    <div class="loading-container">
+      <mat-spinner></mat-spinner>
+      <p>Cargando tus reservas...</p>
+    </div>
+  }
+
+  @if (error()) {
+    <div class="error-container">
+      <mat-icon>error_outline</mat-icon>
+      <p>{{ error() }}</p>
+      <button mat-raised-button color="primary" (click)="loadOrders()">
+        Reintentar
+      </button>
+    </div>
+  }
+
+  @if (!loading() && !error() && orders().length === 0) {
+    <div class="empty-state">
+      <mat-icon>receipt_long</mat-icon>
+      <h2>No tienes reservas todavía</h2>
+      <p>Explora nuestros eventos y realiza tu primera reserva</p>
+      <button mat-raised-button color="primary" routerLink="/events">
+        Ver Eventos
+      </button>
+    </div>
+  }
+
+  @if (!loading() && !error() && orders().length > 0) {
+    <div class="orders-grid">
+      @for (order of orders(); track order.orderId) {
+        <mat-card class="order-card">
+          <mat-card-header>
+            <div class="order-header">
+              <div class="order-id">
+                <mat-icon>confirmation_number</mat-icon>
+                <span>{{ order.orderId }}</span>
+              </div>
+              <mat-chip [class]="getStatusClass(order.status)">
+                {{ getStatusText(order.status) }}
+              </mat-chip>
+            </div>
+          </mat-card-header>
+
+          <mat-card-content>
+            <div class="order-details">
+              <div class="detail-item">
+                <mat-icon>event</mat-icon>
+                <div>
+                  <div class="label">Evento</div>
+                  <div class="value">{{ order.eventName }}</div>
+                </div>
+              </div>
+
+              <div class="detail-item">
+                <mat-icon>calendar_today</mat-icon>
+                <div>
+                  <div class="label">Fecha de reserva</div>
+                  <div class="value">{{ order.orderDate | date:'dd/MM/yyyy HH:mm' }}</div>
+                </div>
+              </div>
+
+              <div class="detail-item">
+                <mat-icon>shopping_cart</mat-icon>
+                <div>
+                  <div class="label">Cantidad</div>
+                  <div class="value">{{ order.quantity }} entrada(s)</div>
+                </div>
+              </div>
+
+              <div class="detail-item total">
+                <mat-icon>euro</mat-icon>
+                <div>
+                  <div class="label">Total</div>
+                  <div class="value amount">{{ order.totalAmount | currency:'EUR' }}</div>
+                </div>
+              </div>
+            </div>
+          </mat-card-content>
+
+          <mat-card-actions>
+            <button mat-stroked-button color="primary">
+              <mat-icon>download</mat-icon>
+              Descargar Entradas
+            </button>
+            <button mat-button>
+              <mat-icon>info</mat-icon>
+              Ver Detalles
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      }
+    </div>
+  }
+</div>

@@ -1,0 +1,234 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+.booking-form-container {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  position: relative;
+  padding: 2rem;
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: 
+      radial-gradient(circle at 20% 50%, rgba(120, 119, 198, 0.3), transparent 50%),
+      radial-gradient(circle at 80% 80%, rgba(255, 135, 135, 0.3), transparent 50%);
+    pointer-events: none;
+  }
+}
+
+.loading-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+  color: #ffffff;
+
+  p {
+    margin-top: 1rem;
+    font-family: 'Poppins', sans-serif;
+  }
+}
+
+.booking-form-content {
+  max-width: 1200px;
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+}
+
+.back-button {
+  background: rgba(255, 255, 255, 0.95);
+  backdrop-filter: blur(10px);
+  margin-bottom: 2rem;
+
+  &:hover {
+    background: #ffffff;
+    transform: scale(1.1);
+  }
+
+  mat-icon {
+    color: #667eea;
+  }
+}
+
+.form-header {
+  text-align: center;
+  margin-bottom: 3rem;
+
+  .form-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: #ffffff;
+    margin: 0 0 0.5rem 0;
+    text-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .form-subtitle {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.3rem;
+    color: rgba(255, 255, 255, 0.9);
+    margin: 0;
+  }
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  gap: 2rem;
+
+  @media (max-width: 1024px) {
+    grid-template-columns: 1fr;
+  }
+}
+
+.event-summary-card,
+.booking-form-card {
+  border-radius: 16px !important;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15) !important;
+
+  mat-card-header {
+    padding: 1.5rem 1.5rem 0 !important;
+
+    mat-card-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.5rem;
+      font-weight: 600;
+      color: #1a1a1a;
+    }
+  }
+
+  mat-card-content {
+    padding: 1.5rem !important;
+  }
+}
+
+.event-summary-card {
+  .summary-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 1rem;
+    padding: 1rem 0;
+    border-bottom: 1px solid #f0f0f0;
+
+    &:last-child {
+      border-bottom: none;
+    }
+
+    mat-icon {
+      color: #667eea;
+      font-size: 1.75rem;
+      width: 1.75rem;
+      height: 1.75rem;
+    }
+
+    .label {
+      font-family: 'Poppins', sans-serif;
+      font-size: 0.85rem;
+      color: #999;
+      margin-bottom: 0.25rem;
+    }
+
+    .value {
+      font-family: 'Poppins', sans-serif;
+      font-size: 1.05rem;
+      color: #333;
+      font-weight: 500;
+    }
+  }
+}
+
+.booking-form-card {
+  form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+
+    .full-width {
+      width: 100%;
+    }
+
+    mat-form-field {
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .total-section {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      padding: 1.5rem;
+      border-radius: 12px;
+      text-align: center;
+      color: #ffffff;
+
+      .total-label {
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.9rem;
+        margin-bottom: 0.5rem;
+        opacity: 0.9;
+      }
+
+      .total-amount {
+        font-family: 'Space Grotesk', sans-serif;
+        font-size: 2.5rem;
+        font-weight: 700;
+      }
+    }
+
+    .submit-button {
+      width: 100%;
+      height: 56px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 1.1rem;
+      font-weight: 600;
+      border-radius: 12px !important;
+      text-transform: none;
+      letter-spacing: 0.5px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+
+      &:not(:disabled):hover {
+        transform: translateY(-2px);
+        box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+      }
+
+      &:disabled {
+        background: #ccc;
+        color: #666;
+      }
+
+      mat-spinner {
+        display: inline-block;
+        margin-right: 0.5rem;
+      }
+    }
+
+    .info-note {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      padding: 1rem;
+      background: #e3f2fd;
+      border-radius: 8px;
+      color: #1976d2;
+
+      mat-icon {
+        font-size: 1.5rem;
+        width: 1.5rem;
+        height: 1.5rem;
+      }
+
+      p {
+        font-family: 'Poppins', sans-serif;
+        font-size: 0.9rem;
+        margin: 0;
+      }
+    }
+  }
+}

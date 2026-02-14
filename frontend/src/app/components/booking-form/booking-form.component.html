@@ -1,0 +1,135 @@
+<div class="booking-form-container">
+  @if (loading()) {
+    <div class="loading-container">
+      <mat-spinner></mat-spinner>
+      <p>Cargando información del evento...</p>
+    </div>
+  }
+
+  @if (!loading() && event()) {
+    <div class="booking-form-content">
+      <button mat-icon-button class="back-button" (click)="goBack()">
+        <mat-icon>arrow_back</mat-icon>
+      </button>
+
+      <div class="form-header">
+        <h1 class="form-title">Reservar Entradas</h1>
+        <p class="form-subtitle">{{ event()!.name }}</p>
+      </div>
+
+      <div class="form-grid">
+        <mat-card class="event-summary-card">
+          <mat-card-header>
+            <mat-card-title>Resumen del Evento</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <div class="summary-item">
+              <mat-icon>event</mat-icon>
+              <div>
+                <div class="label">Fecha</div>
+                <div class="value">{{ event()!.eventDate | date:'EEEE, d MMMM y' }}</div>
+              </div>
+            </div>
+
+            <div class="summary-item">
+              <mat-icon>location_on</mat-icon>
+              <div>
+                <div class="label">Lugar</div>
+                <div class="value">{{ event()!.venue.name }}</div>
+              </div>
+            </div>
+
+            <div class="summary-item">
+              <mat-icon>euro</mat-icon>
+              <div>
+                <div class="label">Precio por entrada</div>
+                <div class="value">{{ event()!.ticketPrice | currency:'EUR' }}</div>
+              </div>
+            </div>
+
+            <div class="summary-item">
+              <mat-icon>confirmation_number</mat-icon>
+              <div>
+                <div class="label">Disponibilidad</div>
+                <div class="value">{{ event()!.availableCapacity }} entradas</div>
+              </div>
+            </div>
+          </mat-card-content>
+        </mat-card>
+
+        <mat-card class="booking-form-card">
+          <mat-card-header>
+            <mat-card-title>Información de Reserva</mat-card-title>
+          </mat-card-header>
+          <mat-card-content>
+            <form [formGroup]="bookingForm" (ngSubmit)="onSubmit()">
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Nombre Completo</mat-label>
+                <input matInput formControlName="customerName" placeholder="Juan Pérez">
+                <mat-icon matPrefix>person</mat-icon>
+                @if (bookingForm.get('customerName')?.hasError('required') && bookingForm.get('customerName')?.touched) {
+                  <mat-error>El nombre es obligatorio</mat-error>
+                }
+                @if (bookingForm.get('customerName')?.hasError('minlength')) {
+                  <mat-error>El nombre debe tener al menos 3 caracteres</mat-error>
+                }
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Email</mat-label>
+                <input matInput type="email" formControlName="customerEmail" placeholder="ejemplo@email.com">
+                <mat-icon matPrefix>email</mat-icon>
+                @if (bookingForm.get('customerEmail')?.hasError('required') && bookingForm.get('customerEmail')?.touched) {
+                  <mat-error>El email es obligatorio</mat-error>
+                }
+                @if (bookingForm.get('customerEmail')?.hasError('email')) {
+                  <mat-error>Introduce un email válido</mat-error>
+                }
+              </mat-form-field>
+
+              <mat-form-field appearance="outline" class="full-width">
+                <mat-label>Cantidad de Entradas</mat-label>
+                <input matInput type="number" formControlName="quantity" min="1" [max]="event()!.availableCapacity">
+                <mat-icon matPrefix>confirmation_number</mat-icon>
+                @if (bookingForm.get('quantity')?.hasError('required')) {
+                  <mat-error>La cantidad es obligatoria</mat-error>
+                }
+                @if (bookingForm.get('quantity')?.hasError('min')) {
+                  <mat-error>Mínimo 1 entrada</mat-error>
+                }
+                @if (bookingForm.get('quantity')?.hasError('max')) {
+                  <mat-error>Máximo {{ event()!.availableCapacity }} entradas</mat-error>
+                }
+              </mat-form-field>
+
+              <div class="total-section">
+                <div class="total-label">Total a Pagar</div>
+                <div class="total-amount">{{ getTotalPrice() | currency:'EUR' }}</div>
+              </div>
+
+              <button 
+                mat-raised-button 
+                color="primary" 
+                type="submit" 
+                class="submit-button"
+                [disabled]="!bookingForm.valid || submitting()">
+                @if (submitting()) {
+                  <mat-spinner diameter="20"></mat-spinner>
+                  <span>Procesando...</span>
+                } @else {
+                  <mat-icon>shopping_cart</mat-icon>
+                  <span>Confirmar Reserva</span>
+                }
+              </button>
+
+              <div class="info-note">
+                <mat-icon>info</mat-icon>
+                <p>Recibirás las entradas por email después de confirmar la reserva</p>
+              </div>
+            </form>
+          </mat-card-content>
+        </mat-card>
+      </div>
+    </div>
+  }
+</div>
