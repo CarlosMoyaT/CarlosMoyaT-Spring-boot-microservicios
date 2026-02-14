@@ -32,7 +32,7 @@ export class EventDetailComponent implements OnInit {
     private route = inject(ActivatedRoute);
     private router = inject(Router);
 
-    event = signal<Event | null>(null);
+    event = signal<EventModel | null>(null);
     loading = signal<boolean>(true);
     error = signal<string | null>(null);
 
@@ -69,7 +69,7 @@ export class EventDetailComponent implements OnInit {
         this.router.navigate(['/events']);
     }
 
-    getAvailabilityPercentage(event: Event): number {
+    getAvailabilityPercentage(event: EventModel): number {
     return (event.availableCapacity / event.totalCapacity) * 100;
     }
 

@@ -58,11 +58,11 @@ viewEventDetail(eventId: number): void {
 }
 
 getAvailabilityPercentage(event: EventModel): number {
-    return (event.availableCapacity / event.totalCapacity) + 100;
+    return (event.availableCapacity / event.totalCapacity) * 100;
 }
 
 getAvailabilityClass(percentage: number): string {
-    if (percentage > 50) return 'hight';
+    if (percentage > 50) return 'high';
     if (percentage > 20) return 'medium';
     return 'low';
 }
