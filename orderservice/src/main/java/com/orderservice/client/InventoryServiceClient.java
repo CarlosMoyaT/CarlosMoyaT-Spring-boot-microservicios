@@ -1,20 +1,24 @@
 package com.orderservice.client;
 
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
-import org.springframework.web.client.RestTemplate;
+import org.springframework.web.client.RestClient;
 
 @Service
 public class InventoryServiceClient {
 
-    @Value("${inventory.service.url}")
-    private String inventoryServiceUrl;
+    private final RestClient restClient;
 
-    public ResponseEntity<Void> updateInventory(final Long eventId, final Long ticketCount) {
+    public InventoryServiceClient(@Value("${inventory.service.url}") String inventoryServiceUrl) {
+        this.restClient = RestClient.builder()
+                .baseUrl(inventoryServiceUrl)
+                .build();
+    }
 
-        RestTemplate restTemplate = new RestTemplate();
-        restTemplate.put(inventoryServiceUrl + "/event/" + eventId + "/capacity/" + ticketCount, null);
-        return ResponseEntity.ok().build();
+    public void updateInventory(final Long eventId, final Long ticketCount) {
+        restClient.put()
+                .uri("/event/{eventId}/capacity/{ticketCount}", eventId, ticketCount)
+                .retrieve()
+                .toBodilessEntity();
     }
 }

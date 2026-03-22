@@ -6,23 +6,18 @@ import com.orderservice.client.InventoryServiceClient;
 import com.orderservice.entity.Order;
 import com.orderservice.repository.OrderRepository;
 
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 
 @Service
 @Slf4j
+@RequiredArgsConstructor
 public class OrderService {
 
-    private OrderRepository orderRepository;
-    private InventoryServiceClient inventoryServiceClient;
-
-    @Autowired
-    public OrderService(OrderRepository orderRepository, InventoryServiceClient inventoryServiceClient) {
-        this.orderRepository = orderRepository;
-    }
-
+    private final OrderRepository orderRepository;
+    private final InventoryServiceClient inventoryServiceClient;
 
     @KafkaListener(topics = "booking", groupId = "order-service")
     public void orderEvent(BookingEvent bookingEvent) {
