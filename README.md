@@ -8,8 +8,7 @@ a distributed system with asynchronous communication.
 
 I wanted to go beyond a simple CRUD application and explore how real distributed systems
 handle concerns like service independence, asynchronous communication, fault tolerance,
-and observability. This project reflects what I learned during my DAW internship and
-my self-study after finishing it.
+and observability. Also how works microservices architecture, communication between them and how to consume data one each other.
 
 ---
 
