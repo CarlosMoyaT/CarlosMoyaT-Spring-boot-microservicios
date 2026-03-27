@@ -4,13 +4,6 @@ A personal project built to practice microservices architecture with Java 21 and
 The platform allows users to browse events, check availability, and book tickets through
 a distributed system with asynchronous communication.
 
-## Why this project?
-
-I wanted to go beyond a simple CRUD application and explore how real distributed systems
-handle concerns like service independence, asynchronous communication, fault tolerance,
-and observability. Also how works microservices architecture, communication between them and how to consume data one each other.
-
----
 
 ## Architecture
 
@@ -199,25 +192,7 @@ The `OrderRepositoryTest` verifies persistence behaviour against a real PostgreS
 container, and `InventoryServiceClientTest` tests the HTTP client against a
 containerized stub.
 
----
 
-## What I learned building this
-
-- How to design service boundaries and decide what belongs in each service
-- The tradeoffs between synchronous REST and asynchronous Kafka communication
-- Why circuit breakers matter and how Resilience4j implements the pattern
-- How Flyway database migrations work in a multi-service environment
-- How to write integration tests with Testcontainers against real infrastructure
-- How JWT authentication works at the gateway level with Keycloak
-
----
-
-## Known limitations and planned improvements
-
-- [ ] Add `GlobalExceptionHandler` with RFC 7807 Problem Details across all services
-- [ ] GitHub Actions CI pipeline with SonarQube quality gate
-- [ ] Email notification when a booking is confirmed (Kafka + Spring Mail)
-- [ ] End-to-end tests for the complete booking flow
 
 
 
