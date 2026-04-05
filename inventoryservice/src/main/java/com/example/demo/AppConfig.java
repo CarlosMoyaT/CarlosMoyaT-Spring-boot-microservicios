@@ -14,17 +14,8 @@ import org.springframework.stereotype.Component;
 @ConfigurationProperties(prefix = "app.kafka")
 
 
-@Component
 public class AppConfig {
 
     private String topicName;
 
-    public String getTopicName() {
-        return topicName;
-    }
-
-    public void setTopicName(String topicName) {
-        this.topicName = topicName;
-
-    }
 }

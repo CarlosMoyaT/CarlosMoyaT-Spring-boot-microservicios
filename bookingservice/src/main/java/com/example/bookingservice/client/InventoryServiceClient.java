@@ -24,6 +24,4 @@ public class InventoryServiceClient {
                 .retrieve()
                 .body(InventoryResponse.class);
     }
-
-
 }

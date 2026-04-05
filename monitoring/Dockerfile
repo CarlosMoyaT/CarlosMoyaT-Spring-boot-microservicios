@@ -1,5 +1,4 @@
-# Dockerfile para Maven
-FROM bellsoft/liberica-openjdk-alpine:17
+FROM bellsoft/liberica-openjdk-alpine:21
 
 ARG JAR_FILE=target/monitoring-1.0-SNAPSHOT.jar
 COPY ${JAR_FILE} app.jar
