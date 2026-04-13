@@ -20,7 +20,7 @@ import java.util.Optional;
 
 import static org.assertj.core.api.AssertionsForClassTypes.assertThat;
 import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class BookingServiceTest {
@@ -50,7 +50,7 @@ public class BookingServiceTest {
     }
 
     @Test
-    void createBooking_shouldThrowException_whenNoutEnoughCapacity() {
+    void createBooking_shouldThrowException_whenNotEnoughCapacity() {
         Customer customer = Customer.builder().id(1L).build();
         InventoryResponse inventory = InventoryResponse.builder()
                 .capacity(1L)
