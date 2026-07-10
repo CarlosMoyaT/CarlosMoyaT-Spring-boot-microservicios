@@ -169,7 +169,7 @@ docker compose up -d
 
 ---
 
-## Observability
+## Metrics
 
 Each service exposes metrics at `/actuator/prometheus`. Prometheus scrapes these
 endpoints every 15 seconds and Grafana provides dashboards for latency,
